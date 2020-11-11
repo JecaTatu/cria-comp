@@ -46,7 +46,8 @@ export class HomeComponent implements OnInit {
       return;
 
     this.service.uploadImg(this.imgURL).subscribe(res => {
-      localStorage.setItem('imageTransformed', res);
+      localStorage.setItem('imageTransformed', res.img);
+      console.log(res);
       this.router.navigateByUrl('transformation')
     })
   }

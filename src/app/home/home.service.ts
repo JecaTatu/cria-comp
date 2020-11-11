@@ -15,7 +15,7 @@ export class HomeService {
     ){}
 
     uploadImg(data: any): Observable<any> {
-        const url = 'link aqui';
+        const url = 'https://aj6ii4bock.execute-api.us-east-2.amazonaws.com/test/transform';
         return this.http.post<any>(url, data)
         .pipe(
             catchError(err => {
