@@ -20,6 +20,9 @@ export class HomeService {
         .pipe(
             catchError(err => {
               console.error(err);
+              if(err.status == 500) {
+                return of(err.status);
+              }
                return throwError(err.error.message);
             }));
       }

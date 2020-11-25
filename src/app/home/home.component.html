@@ -1,18 +1,34 @@
 <div class="container">
-    <div class="content-container">
-
-        <div class="title">
-            <p>Insira aqui uma imagem</p>
-            <div>
+    <div class="loading" *ngIf="loading" style="background-color:rgba(0, 0, 0, 0.2)">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="container__title">
+        <div class="pretitle">Seja bem vindo ao</div>
+        <svg class="title" viewBox="0 -10 500 200">
+                <path id="curve" d="M73.2,148.6c4-6.1,65.5-96.8,178.6-95.6c111.3,1.2,170.8,90.3,175.1,97" />
+                <text width="500">
+                  <textPath xlink:href="#curve">
+                    Moodinator
+                  </textPath>
+                </text>
+              </svg>
+    </div>
+    <div class="container__subtitle">
+        <p>Vamos ver pra onde você iria se dependesse da sua cara na foto?</p>
+    </div>
+    <div class="container__content">
+        <div>
+            <p class="image__title">Mostra tua cara pra gente</p>
+            <div class="image__input">
                 <span style="color:red;" *ngIf="message">{{message}}</span>
                 <input #file type="file" accept='image/*' (change)="preview(file.files)" />
             </div>
         </div>
-        <div>
+        <div *ngIf="imgURL">
             <img [src]="imgURL" height="350" *ngIf="imgURL">
         </div>
-        <div>
-            <button type="submit" (click)="uploadImg()">Transformar fundo desta imagem</button>
+        <div class="image__button">
+            <button class="btn" type="submit" (click)="uploadImg()">Vamos nessa!</button>
         </div>
     </div>
 </div>

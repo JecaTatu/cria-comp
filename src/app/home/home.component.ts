@@ -1,6 +1,7 @@
 import { HomeService } from './home.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,12 @@ export class HomeComponent implements OnInit {
   public imagePath;
   imgURL: any;
   public message: string;
+  loading: boolean;
 
   constructor(
     private router: Router,
-    private service: HomeService
+    private service: HomeService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -44,11 +47,19 @@ export class HomeComponent implements OnInit {
   uploadImg(){
     if(this.imgURL == undefined)
       return;
-
+    this.loading = true;
     this.service.uploadImg(this.imgURL).subscribe(res => {
-      localStorage.setItem('imageTransformed', res.img);
       console.log(res);
-      this.router.navigateByUrl('transformation')
+      if(res == 500) {
+        this.loading = false;
+        this.toastr.error('Não conseguimos transformar essa imagem, pode mandar outra?')
+
+      } else{
+        localStorage.setItem('imageTransformed', res.img);
+        localStorage.setItem('emotion', res.sentiment);
+        this.loading = false;
+        this.router.navigateByUrl('transformation')
+      }
     })
   }
 

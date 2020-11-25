@@ -8,11 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class RenderImageComponent implements OnInit {
 
   img;
-
+  emotion;
   constructor() { }
 
   ngOnInit(): void {
     this.img = localStorage.getItem('imageTransformed')
+    this.emotion = localStorage.getItem('emotion')
   }
 
 
