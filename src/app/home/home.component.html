@@ -13,22 +13,24 @@
                 </text>
               </svg>
     </div>
-    <div class="container__subtitle">
-        <p>Vamos ver pra onde você iria se dependesse da sua cara na foto?</p>
-    </div>
     <div class="container__content">
-        <div>
+        <div class="container__subtitle">
+            <p>Vamos ver pra onde você iria se dependesse da sua cara na foto?</p>
+        </div>
+        <div class="container__input">
             <p class="image__title">Mostra tua cara pra gente</p>
             <div class="image__input">
                 <span style="color:red;" *ngIf="message">{{message}}</span>
                 <input #file type="file" accept='image/*' (change)="preview(file.files)" />
             </div>
         </div>
-        <div *ngIf="imgURL">
-            <img [src]="imgURL" height="350" *ngIf="imgURL">
-        </div>
-        <div class="image__button">
-            <button class="btn" type="submit" (click)="uploadImg()">Vamos nessa!</button>
+        <div class="container_img">
+            <div *ngIf="imgURL">
+                <img [src]="imgURL" height="350" *ngIf="imgURL">
+            </div>
+            <div class="image__button">
+                <button class="btn" type="submit" (click)="uploadImg()">Vamos nessa!</button>
+            </div>
         </div>
     </div>
 </div>
